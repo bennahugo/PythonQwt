@@ -416,7 +416,10 @@ class QwtRichTextEngine(QwtTextEngine):
         :param str text: Text to be tested
         :return: True, if it can be rendered
         """
-        return Qt.mightBeRichText(text)
+        try:
+         return Qt.mightBeRichText(text)
+        except: # API not available in PyQt5 under python 3
+         return True
     
     def textMargins(self, font):
         """
